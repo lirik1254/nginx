@@ -1,0 +1,14 @@
+services:
+  nginx:
+    image: ${APP_IMAGE}
+    container_name: nginx
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    networks:
+      - app
+
+# Общая сеть с фронтом и бэком (создаётся в CI: docker network create app).
+networks:
+  app:
+    external: true
